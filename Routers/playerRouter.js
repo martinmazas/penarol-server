@@ -4,7 +4,7 @@ const playerRouter = new Router();
 
 playerRouter.get('/', playerDBController.getPlayer);
 // userRouter.get('/:id', userDBController.getUser);
-// userRouter.post('/', userDBController.addUser);
+playerRouter.post('/', playerDBController.addPlayer);
 // userRouter.post('/:email', userDBController.login);
 // userRouter.put('/:id', userDBController.updateUserOrAddToFavorites);
 // userRouter.delete('/:id', userDBController.deleteUserOrFavoritePlant);

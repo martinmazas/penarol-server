@@ -13,11 +13,15 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/', (req, res) => {
-    res.send({ express: 'Connect to react?' })
-});
+app.set("trust proxy", 1);
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/player', playerRouter);
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something is broken!');
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}!`)
