@@ -9,9 +9,18 @@ exports.playerDBController = {
             .catch(err => console.log(err));
     },
     addPlayer(req, res) {
-        const name = req.body.Name;
-        const position = req.params.position;
-        console.log(req);
-        res.send({name, position});
+        const body = req.body;
+        const newPlayer = new Player({
+            name: body.Name,
+            position: body.Position,
+            born: body.Born,
+            height: body.Height,
+            picture: body.Picture,
+            country: body.Country
+        })
+        newPlayer
+            .save()
+            .then(docs => { res.send(`Player ${body.Name} successfully added`) })
+            .catch(err => console.log(err));
     }
 }

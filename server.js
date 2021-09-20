@@ -2,7 +2,12 @@ const express = require('express')
 const app = express();
 const port = 8000;
 const cors = require('cors');
+const logger = require('morgan');
 const { playerRouter } = require("./Routers/playerRouter");
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(logger("dev"));
 
 app.use(cors({ credentials: true, origin: 'http://localhost:3000', methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE"], preflightContinue: true }));
 app.use((req, res, next) => {
@@ -14,7 +19,6 @@ app.use((req, res, next) => {
 });
 
 app.set("trust proxy", 1);
-app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/player', playerRouter);
 
