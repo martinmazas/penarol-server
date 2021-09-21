@@ -7,6 +7,6 @@ playerRouter.get('/', playerDBController.getPlayer);
 playerRouter.post('/', playerDBController.addPlayer);
 // userRouter.post('/:email', userDBController.login);
 // userRouter.put('/:id', userDBController.updateUserOrAddToFavorites);
-// userRouter.delete('/:id', userDBController.deleteUserOrFavoritePlant);
+playerRouter.delete('/:id', playerDBController.removePlayer);
 
 module.exports = { playerRouter };

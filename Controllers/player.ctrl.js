@@ -22,5 +22,17 @@ exports.playerDBController = {
             .save()
             .then(docs => { res.send(`Player ${body.Name} successfully added`) })
             .catch(err => console.log(err));
+    },
+    removePlayer(req, res) {
+        console.log(req.params.id);
+        Player.findOneAndDelete({
+            _id: req.params.id
+        })
+            .then(Player.find({})
+                .then(docs => {
+                    res.json(docs)
+                })
+                .catch(err => console.log(err)))
+            .catch(err => console.log(`Cannot delete the player: ${err}`));
     }
 }
