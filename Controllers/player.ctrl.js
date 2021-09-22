@@ -4,6 +4,9 @@ exports.playerDBController = {
     getPlayer(req, res) {
         Player.find({})
             .then(docs => {
+                docs.sort(function (a, b) {
+                    return ('' + a.name).localeCompare(b.name);
+                })
                 res.json(docs)
             })
             .catch(err => console.log(err));
@@ -30,6 +33,9 @@ exports.playerDBController = {
         })
             .then(Player.find({})
                 .then(docs => {
+                    docs.sort(function (a, b) {
+                        return ('' + a.name).localeCompare(b.name);
+                    })
                     res.json(docs)
                 })
                 .catch(err => console.log(err)))
