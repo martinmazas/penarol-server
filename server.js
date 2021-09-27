@@ -4,6 +4,7 @@ const port = 8000;
 const cors = require('cors');
 const logger = require('morgan');
 const { playerRouter } = require("./Routers/playerRouter");
+const { userRouter } = require('./Routers/userRouter');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -21,6 +22,7 @@ app.use((req, res, next) => {
 app.set("trust proxy", 1);
 
 app.use('/api/player', playerRouter);
+app.use('/api/user', userRouter);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
