@@ -21,6 +21,10 @@ app.use((req, res, next) => {
 
 app.set("trust proxy", 1);
 
+app.use('/api/users/logout', function (req, res) {
+    res.clearCookie('token');
+    res.json('Successfully logout');
+});
 app.use('/api/player', playerRouter);
 app.use('/api/user', userRouter);
 
