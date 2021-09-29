@@ -20,7 +20,6 @@ exports.userDBController = {
             .catch(err => console.log(err));
     },
     login(req, res) {
-        console.log(req.params.email);
         User.findOne({ email: req.params.email })
             .then(docs => {
                 if (docs) {
