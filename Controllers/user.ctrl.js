@@ -29,8 +29,8 @@ exports.userDBController = {
                     else {
                         const id = docs._id;
                         const token = jwt.sign({ id }, privateKey);
-                        res.cookie('token', token, { maxAge: 6000000, sameSite: 'none', secure: true });
-                        res.json("Successfully connected");
+                        // res.cookie('token', token, { maxAge: 6000000, sameSite: 'none', secure: true });
+                        res.json({msg:"Successfully connected", token:token});
                     }
                 }
                 else {
