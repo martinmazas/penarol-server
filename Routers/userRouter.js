@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { userDBController } = require('../controllers/user.ctrl');
+const { userDBController } = require('../Controllers/user.ctrl');
 const userRouter = new Router();
 
 userRouter.get('/', userDBController.getUsers);
