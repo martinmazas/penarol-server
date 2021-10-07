@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express();
-const port = 8000;
+const port = 3000;
 const cors = require('cors');
 const logger = require('morgan');
 const { playerRouter } = require("./Routers/playerRouter");
@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(logger("dev"));
 
-app.use(cors({ credentials: true, origin: 'http://localhost:3000', methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE"], preflightContinue: true }));
+app.use(cors({ credentials: true, origin: 'http://localhost:3001', methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE"], preflightContinue: true }));
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
