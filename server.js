@@ -27,6 +27,7 @@ app.use('/api/users/logout', function (req, res) {
 });
 app.use('/api/player', playerRouter);
 app.use('/api/user', userRouter);
+app.get('*', (req, res) => { res.send('Welcome to Penarol heroku server'); });
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
