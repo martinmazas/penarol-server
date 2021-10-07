@@ -6,8 +6,8 @@ const privateKey = process.env.PRIVATE_KEY;
 exports.userDBController = {
     getUsers(req, res) {
         User.find({})
-        .then(docs => console.log(docs))
-        .catch(err => console.log(`${err}`));
+            .then(docs => console.log(docs))
+            .catch(err => console.log(`${err}`));
     },
     addUser(req, res) {
         const newUser = new User({
@@ -29,7 +29,7 @@ exports.userDBController = {
                     else {
                         const id = docs._id;
                         const token = jwt.sign({ id }, privateKey);
-                        res.cookie('token', token, { maxAge: 6000000, sameSite: 'none', secure: true });
+                        res.cookie('token', token, { maxAge: 6000000, sameSite: 'none', secure: true, path: '/' });
                         res.json("Successfully connected");
                     }
                 }
