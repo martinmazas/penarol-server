@@ -29,7 +29,7 @@ exports.userDBController = {
                     else {
                         const id = docs._id;
                         const token = jwt.sign({ id }, privateKey);
-                        res.cookie('token', token, { maxAge: 6000000, sameSite: 'none', secure: true, path: '/' });
+                        res.cookie('token', token, { maxAge: 6000000, sameSite: 'none', secure: true });
                         res.json("Successfully connected");
                     }
                 }
