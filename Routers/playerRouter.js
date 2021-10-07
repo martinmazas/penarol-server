@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { playerDBController } = require('../controllers/player.ctrl');
+const { playerDBController } = require('../Controllers/player.ctrl');
 const playerRouter = new Router();
 
 playerRouter.get('/', playerDBController.getPlayer);
