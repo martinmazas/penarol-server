@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 
 app.set("trust proxy", 1);
 
-app.use('/api/users/logout', function (req, res) {
+app.use('/api/user/logout', function (req, res) {
     res.clearCookie('token');
     res.json('Successfully logout');
 });
