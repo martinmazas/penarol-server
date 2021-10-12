@@ -40,7 +40,7 @@ exports.playerDBController = {
             .catch(err => console.log(`Cannot update the player: ${err}`));
     },
     removePlayer(req, res) {
-        Player.findOneAndDelete({
+        Player.deleteOne({
             _id: req.params.id
         })
             .then(Player.find({})
