@@ -43,14 +43,15 @@ exports.playerDBController = {
         Player.deleteOne({
             _id: req.params.id
         })
-            .then(Player.find({})
-                .then(docs => {
-                    docs.sort(function (a, b) {
-                        return ('' + a.name).localeCompare(b.name);
-                    })
-                    res.json(docs)
-                })
-                .catch(err => console.log(err)))
+            .then(res.json("Successfully delete player"))
+            // .then(Player.find({})
+            //     .then(docs => {
+            //         docs.sort(function (a, b) {
+            //             return ('' + a.name).localeCompare(b.name);
+            //         })
+            //         res.json(docs)
+            //     })
+            //     .catch(err => console.log(err)))
             .catch(err => console.log(`Cannot delete the player: ${err}`));
     }
 }
