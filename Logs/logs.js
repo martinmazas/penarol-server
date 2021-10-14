@@ -9,7 +9,7 @@ module.exports = {
         const logText = currentDate + " - " + currentTime + " -  " + log + '\n';
         fs.appendFile(path, logText, function (err) {
             if (err) throw err;
-            console.log('saved!');
+            console.log(`${log}`);
                 // errorServerLogs(`Error writing to backlog: ${err}`);
         })
     }
