@@ -1,3 +1,4 @@
+const { writeBackLog } = require('../Logs/logs');
 const Player = require('../Models/player');
 
 exports.playerDBController = {
@@ -7,9 +8,12 @@ exports.playerDBController = {
                 docs.sort(function (a, b) {
                     return ('' + a.name).localeCompare(b.name);
                 })
-                res.json(docs)
+                writeBackLog('Get players called');
+                res.json(docs);
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                writeBackLog(err);
+            });
     },
     addPlayer(req, res) {
         const body = req.body;
@@ -23,8 +27,11 @@ exports.playerDBController = {
         })
         newPlayer
             .save()
-            .then(docs => { res.send(`Player ${body.Name} successfully added`) })
-            .catch(err => console.log(err));
+            .then(docs => {
+                writeBackLog(`Player ${body.Name} successfully added`);
+                res.send(`Player ${body.Name} successfully added`);
+            })
+            .catch(err => writeBackLog(err));
     },
     updatePlayer(req, res) {
         const body = req.body;
@@ -40,18 +47,12 @@ exports.playerDBController = {
             .catch(err => console.log(`Cannot update the player: ${err}`));
     },
     removePlayer(req, res) {
+        console.log('this');
         Player.deleteOne({
             _id: req.params.id
         })
+            .then(writeBackLog(`Player ${req.params.name} successfully deleted`))
             .then(res.json("Successfully delete player"))
-            // .then(Player.find({})
-            //     .then(docs => {
-            //         docs.sort(function (a, b) {
-            //             return ('' + a.name).localeCompare(b.name);
-            //         })
-            //         res.json(docs)
-            //     })
-            //     .catch(err => console.log(err)))
-            .catch(err => console.log(`Cannot delete the player: ${err}`));
+            .catch(err => writeBackLog(err));
     }
 }
