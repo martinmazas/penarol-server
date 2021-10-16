@@ -3,7 +3,7 @@ const moment = require("moment");
 const path = 'logs.txt';
 
 module.exports = {
-    writeBackLog: (log, color) => {
+    writeBackLog: (log) => {
         const currentDate = moment().format('L');
         const currentTime = moment().format('LTS');
         const logText = currentDate + " - " + currentTime + " -  " + log + '\n';

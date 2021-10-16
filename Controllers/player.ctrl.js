@@ -8,11 +8,11 @@ exports.playerDBController = {
                 docs.sort(function (a, b) {
                     return ('' + a.name).localeCompare(b.name);
                 })
-                writeBackLog('Get players called', 'green');
+                writeBackLog('Get players called');
                 res.json(docs);
             })
             .catch(err => {
-                writeBackLog(err, 'red');
+                writeBackLog(err);
             });
     },
     addPlayer(req, res) {
@@ -28,10 +28,10 @@ exports.playerDBController = {
         newPlayer
             .save()
             .then(docs => {
-                writeBackLog(`Player ${body.Name} successfully added`, 'green');
+                writeBackLog(`Player ${body.Name} successfully added`);
                 res.send(`Player ${body.Name} successfully added`);
             })
-            .catch(err => writeBackLog(err, 'red'));
+            .catch(err => writeBackLog(err));
     },
     updatePlayer(req, res) {
         const body = req.body;
@@ -43,7 +43,7 @@ exports.playerDBController = {
             picture: body.Picture,
             country: body.Country
         })
-            .then(res.json(`Player ${body.Name} successfully modified`, 'green'))
+            .then(res.json(`Player ${body.Name} successfully modified`))
             .catch(err => console.log(`Cannot update the player: ${err}`));
     },
     removePlayer(req, res) {
@@ -51,8 +51,8 @@ exports.playerDBController = {
         Player.deleteOne({
             _id: req.params.id
         })
-            .then(writeBackLog(`Player ${req.params.name} successfully deleted`, 'green'))
+            .then(writeBackLog(`Player ${req.params.name} successfully deleted`))
             .then(res.json("Successfully delete player"))
-            .catch(err => writeBackLog(err, 'red'));
+            .catch(err => writeBackLog(err));
     }
 }
