@@ -6,6 +6,7 @@ const logger = require('morgan');
 const { playerRouter } = require("./Routers/playerRouter");
 const { userRouter } = require('./Routers/userRouter');
 const { aperturaRouter } = require('./Routers/aperturaRouter');
+const { clausuraRouter } = require('./Routers/clausuraRouter');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -30,6 +31,7 @@ app.use('/api/user/logout', function (req, res) {
 app.use('/api/player', playerRouter);
 app.use('/api/user', userRouter);
 app.use('/api/apertura21', aperturaRouter);
+app.use('/api/clausura21', clausuraRouter);
 app.get('*', (req, res) => { res.send('Welcome to Penarol heroku server'); });
 
 app.use((err, req, res, next) => {

@@ -1,11 +1,21 @@
 const { writeBackLog } = require('../Logs/logs');
 const Apertura = require('../Models/apertura21');
+const Clausura = require('../Models/clausura21');
 
 exports.aperturaDBController = {
     getTeams(req, res) {
-        Apertura.find({})
+        const tournament = req.route.path;
+        console.log(tournament);
+        tournament === '/apertura' ? Apertura.find({})
+        .then(docs => {
+            writeBackLog('Get apertura teams called');
+            res.json(docs);
+        })
+        .catch(err => {
+            writeBackLog(err);
+        }) : Clausura.find({})
             .then(docs => {
-                writeBackLog('Get players called');
+                writeBackLog('Get clausura teams called');
                 res.json(docs);
             })
             .catch(err => {
@@ -13,9 +23,9 @@ exports.aperturaDBController = {
             });
     },
     addTeamData(req, res) {
-        console.log("here");
         const body = req.body;
-        const newTeam = new Apertura({
+        const tournament = req.route.path;
+        const newTeam = tournament === '/apertura' ? new Apertura({
             team: body.team,
             pj: body.pj,
             pg: body.pg,
@@ -25,7 +35,19 @@ exports.aperturaDBController = {
             gc: body.gc,
             df: Number(body.gf) - Number(body.gc),
             pt: Number(body.pg) * 3 + Number(body.pe)
-        })
+        }) :
+            new Clausura({
+                team: body.team,
+                pj: body.pj,
+                pg: body.pg,
+                pe: body.pe,
+                pp: body.pp,
+                gf: body.gf,
+                gc: body.gc,
+                df: Number(body.gf) - Number(body.gc),
+                pt: Number(body.pg) * 3 + Number(body.pe)
+            })
+
         newTeam
             .save()
             .then(docs => {

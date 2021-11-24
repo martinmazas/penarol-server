@@ -2,8 +2,8 @@ const { Router } = require('express');
 const { aperturaDBController } = require('../Controllers/apertura.ctrl.js');
 const aperturaRouter = new Router();
 
-aperturaRouter.get('/', aperturaDBController.getTeams);
-aperturaRouter.post('/', aperturaDBController.addTeamData);
+aperturaRouter.get('/apertura', aperturaDBController.getTeams);
+aperturaRouter.post('/apertura', aperturaDBController.addTeamData);
 // aperturaRouter.put('/:id', aperturaDBController.updatePlayer);
 // aperturaRouter.delete('/:id&:name', aperturaDBController.removePlayer);
 
