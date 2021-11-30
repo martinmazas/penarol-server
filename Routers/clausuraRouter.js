@@ -1,10 +1,10 @@
 const { Router } = require('express');
-const { aperturaDBController } = require('../Controllers/apertura.ctrl.js');
+const { tournamentsDBController } = require('../Controllers/tournaments.ctrl.js');
 const clausuraRouter = new Router();
 
-clausuraRouter.get('/clausura', aperturaDBController.getTeams);
-clausuraRouter.post('/clausura', aperturaDBController.addTeamData);
-// clausuraRouter.put('/:id', clausuraDBController.updatePlayer);
+clausuraRouter.get('/clausura', tournamentsDBController.getTeams);
+clausuraRouter.post('/clausura', tournamentsDBController.addTeamData);
+clausuraRouter.put('/clausura', tournamentsDBController.updateTable);
 // clausuraRouter.delete('/:id&:name', clausuraDBController.removePlayer);
 
 module.exports = { clausuraRouter };

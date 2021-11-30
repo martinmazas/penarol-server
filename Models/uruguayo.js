@@ -1,13 +1,13 @@
 const uruguayanModel = {
     team: { type: String },
-    pj: { type: String },
-    pg: { type: String },
-    pe: { type: String },
-    pp: { type: String },
-    gf: { type: String },
-    gc: { type: String },
-    df: { type: String },
-    pt: { type: String }
+    pj: { type: Number },
+    pg: { type: Number },
+    pe: { type: Number },
+    pp: { type: Number },
+    gf: { type: Number },
+    gc: { type: Number },
+    df: { type: Number },
+    pt: { type: Number }
 
 }
 
